@@ -23,11 +23,13 @@ export class ArtistState {
     @Action(AddArtist)
     add({getState, patchState}: StateContext<ArtistStateModel>, {payload}: AddArtist) {
         const state = getState();
+        const temp = state.artists;
         let keyValue = payload.name.toString();
         return this.api.getService(payload.name).pipe(
             tap(data => patchState({
                 active: keyValue,
                 artists: {
+                    ...temp,
                     [keyValue]: data.map(e => new ArtistData(e))
                 }
             }))
