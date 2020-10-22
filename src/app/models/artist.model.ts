@@ -8,6 +8,7 @@ export interface AlbumId {
 
 export class ArtistStateModel {
     active: string;
+    activealbums: any;
     artists: {
         [name: string]: ArtistData[];
     }

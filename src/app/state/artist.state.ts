@@ -28,6 +28,7 @@ export class ArtistState {
         return this.api.getArtists(payload.name).pipe(
             tap(data => patchState({
                 active: keyValue,
+                activealbums: null,
                 artists: {
                     ...temp,
                     [keyValue]: data.map(e => new ArtistData(e))
@@ -41,13 +42,14 @@ export class ArtistState {
         const state = getState();        
         return this.api.getSingleArtist(payload.id).pipe(
             tap(data => {
-                state.artists[state.active]
+                const actAlbums = state.artists[state.active]
                   .filter(e => e.id === payload.id)
                   .map(a=>a.albums=data.items
                   .map(d=>new Albums(d)));
                 const temp = state.artists;
                 patchState({
                     active: state.active,
+                    activealbums: actAlbums.map(a=>a)[0],
                     artists: {
                         ...temp,
                     }

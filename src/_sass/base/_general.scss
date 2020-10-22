@@ -91,15 +91,15 @@ a {
 
 
 // Form elements
-button.btn,
-.button {
+.btn,
+button  {
   display: block;
   font-weight: normal;
   text-decoration: none;
-  background: transparent;
+  background: $link-color;
   color: #ffffff;
   transition: all 0.3s ease-in-out;
-  border: 1px solid $white-color;
+  border: none;
   font-size: 18px;
   color: #fff;
   border: none;
@@ -114,6 +114,7 @@ button.btn,
   &:hover,
   &.selected {
     color: $white-color;
+    background: darken($link-color, 5%);
   }
 }
 
