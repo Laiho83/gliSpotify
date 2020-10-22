@@ -17,10 +17,12 @@ export class HomeComponent implements OnInit {
   constructor(private store: Store, private api: ApiService){}
 
   ngOnInit() {
-    this.artists$ =  this.store.select(state => state.artists);
+    this.artists$ =  this.store.select(state => state.spotify);
     this.artists$.subscribe(i => {
-      console.log(i);
-      // this.artistList = i.items;
+      const temp = i.active || null;
+      if (temp){
+        this.artistList = i.artists[temp];
+      }
     });
   }
 }
