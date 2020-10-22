@@ -19,6 +19,7 @@ export class AccessTokenComponent implements OnInit {
 
   ngOnInit() {
     this.store.dispatch(new GetAuth({accessToken: window.location.hash.split('&')[0].replace('#access_token=', '')}));
+    this.api.setToken();
     this.router.navigate(['home']);
   }
 }

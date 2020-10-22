@@ -1,9 +1,9 @@
-import { Artist } from '../models/artist.model';
+import { ArtistName } from '../models/artist.model';
 
 export class AddArtist {
     static readonly type = '[ARTIST] Add';
 
-    constructor(public payload: Artist) {}
+    constructor(public payload: ArtistName) {}
 }
 
 export class RemoveArtist {

@@ -7,9 +7,9 @@ import { Observable, of, EMPTY, forkJoin } from 'rxjs';
 import { map, catchError, take, mergeMap } from 'rxjs/operators';
 
 import { Store } from'@ngxs/store';
-import { Artist, Test } from './../models/artist.model';
 import { GetAuth } from './../state/auth.action';
 import { Router } from '@angular/router';
+import { AddArtist } from './../state/artist.actions';
 
 @Injectable({
   providedIn: 'root',
@@ -38,9 +38,9 @@ export class ApiService {
   }
 
   getService(slug) {
-    return this.http.get(`${this.apiRoot}/v1/search?q=Metallica&type=artist&limit=50&offset=0`,  { headers: this.headers }).pipe(
+    return this.http.get(`${this.apiRoot}/v1/search?q=${slug}&type=artist&limit=50&offset=0`,  { headers: this.headers }).pipe(
       map((e: any) => {
-        return new Test(e);
+        return e.artists.items;
       }),
       catchError(err => {
         console.log('Error API getArtists ', err.message);
@@ -63,6 +63,7 @@ export class ApiService {
   setToken() {
     this.store.select(state => state.auth.token).subscribe(e => {
       this.tokenBearer = e;
+      console.log('this.tokenBearer: ', this.tokenBearer);
       this.headers = new HttpHeaders({'Authorization': 'Bearer ' + this.tokenBearer})
     });
   }

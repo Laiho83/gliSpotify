@@ -14,10 +14,10 @@ export class HomeComponent implements OnInit {
   constructor(private store: Store, private api: ApiService){}
 
   ngOnInit() {
-    this.store.dispatch(new AddArtist({name: 'kjsdhfg', genres: ['sdjkfhg']}));
-    let a = this.api.getService('sdkjhfg');
-    a.subscribe(e => {
-      console.log(e);
-    });
+    this.store.dispatch(new AddArtist({name: 'Metallica'}));
+    // let a = this.api.getService('Metallica');
+    // this.store.select(state => state.artists).subscribe(
+    //   a => console.log(a)
+    // );
   }
 }

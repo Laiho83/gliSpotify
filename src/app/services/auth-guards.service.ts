@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { ApiService } from './api.service';
 
 import { Store } from'@ngxs/store';
-import { Artist } from './../models/artist.model';
 import { GetAuth } from './../state/auth.action';
 import { AccessTokenComponent } from '../components/access-token/access-token.component';
 
