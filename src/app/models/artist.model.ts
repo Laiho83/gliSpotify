@@ -3,16 +3,21 @@ export interface ArtistName {
 }
 
 export class ArtistStateModel {
-    artists: any;
-    constructor(obj: any) {
-        this.artists = obj;
-    }
+    items: ArtistData;
 }
 
-export class Test {
+export class ArtistData {
+    name: string;
+    genres: string[];
+    image: {
+        width: string;
+        height: string;
+        url: string;
+    };
     obj: any;
-
     constructor(obj: any) {
-        this.obj = obj.artists;
-    }
+        this.name = obj.name;
+        this.genres = obj.genres;
+        this.image = obj.images[1];
+      }
 }

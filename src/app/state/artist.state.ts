@@ -1,5 +1,5 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { ArtistStateModel } from './../models/artist.model'
+import { ArtistStateModel, ArtistData } from './../models/artist.model'
 import { AddArtist, RemoveArtist } from './artist.actions'
 import { ApiService } from './../services/api.service';
 import { Injectable } from '@angular/core';
@@ -15,7 +15,7 @@ import { tap, map } from 'rxjs/operators';
 export class ArtistState {
     @Selector()
     static getartists(state: ArtistStateModel) {
-        return state.artists
+        return state.items
     }
 
     constructor(private api: ApiService){}
@@ -26,7 +26,7 @@ export class ArtistState {
         
         return this.api.getService(payload.name).pipe(
             tap(data => patchState({
-              artists: new ArtistStateModel(data)
+                items: data.map(e => new ArtistData(e))
             }))
         )
     }

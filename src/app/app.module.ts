@@ -14,12 +14,14 @@ import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
 import { ApiService } from './services/api.service';
 import { HomeComponent } from './components/home/home.component';
 import { AccessTokenComponent } from './components/access-token/access-token.component';
+import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
-    AccessTokenComponent
+    AccessTokenComponent,
+    SearchComponent
   ],
   imports: [
     BrowserModule,
