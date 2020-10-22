@@ -15,6 +15,7 @@ export class ArtistComponent implements OnInit {
 
   albums$;
   albumList;
+  artistId;
 
   constructor(
     private router: Router,
@@ -23,7 +24,8 @@ export class ArtistComponent implements OnInit {
     private cd: ChangeDetectorRef,
   ) { 
     this.route.paramMap.subscribe((snap: any) => {
-      this.store.dispatch(new AddAlbumList({id: snap.params.id.toString()}));
+      this.artistId = snap.params.id.toString();
+      this.store.dispatch(new AddAlbumList({id: this.artistId}));
     })
   }
 

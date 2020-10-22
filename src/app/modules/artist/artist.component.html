@@ -7,7 +7,7 @@
         </div>
         <div class="content">
           <p class="card-title">{{list.name}}</p>
-          <a [href]="['/artist/album/'+list.id]" [routerLink]="['/artist/album/'+list.id]" class="btn">
+          <a [href]="['/artist/album/'+artistId+':'+list.id]" [routerLink]="['/artist/album/'+artistId+':'+list.id]" class="btn">
             Check it out
           </a>
         </div>

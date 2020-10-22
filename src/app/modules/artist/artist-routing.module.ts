@@ -11,7 +11,7 @@ const routes: Routes = [
     component: ArtistComponent,
   },
   {
-    path: 'album/:id',
+    path: 'album/:album',
     pathMatch: 'full',
     component: AlbumComponent,
   },

@@ -61,6 +61,18 @@ export class ApiService {
     );
   }
 
+  getArtistTracks(id) {
+    return this.http.get(`${this.apiRoot}/v1/albums/${id}/tracks`,  { headers: this.headers }).pipe(
+      map((e: any) => {
+        return e;
+      }),
+      catchError(err => {
+        console.log('Error API getArtist ', err.message);
+        return of([]);
+      })
+    );
+  }
+
   checkToken() {
     let isToken$ = this.store.select(state => state.auth.token);
     isToken$.subscribe(e => {

@@ -1,6 +1,6 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { ArtistStateModel, ArtistData, Albums } from './../models/artist.model'
-import { AddArtist, AddAlbumList } from './artist.actions'
+import { ArtistStateModel, ArtistData, Albums, Tracks } from './../models/artist.model'
+import { AddArtist, AddAlbumList, AddAlbumTracks } from './artist.actions'
 import { ApiService } from './../services/api.service';
 import { Injectable } from '@angular/core';
 import { tap, map } from 'rxjs/operators';
@@ -44,12 +44,14 @@ export class ArtistState {
             tap(data => {
                 const actAlbums = state.artists[state.active]
                   .filter(e => e.id === payload.id)
-                  .map(a=>a.albums=data.items
-                  .map(d=>new Albums(d)));
+                  .map(a => a.albums = data.items
+                    .map(d => new Albums(d))
+                  );
                 const temp = state.artists;
                 patchState({
                     active: state.active,
                     activealbums: actAlbums.map(a=>a)[0],
+                    activeArtist: payload.id,
                     artists: {
                         ...temp,
                     }
@@ -58,10 +60,29 @@ export class ArtistState {
         )
     }
 
-    // @Action(RemoveTutorial)Add
-    // remove({getState, patchState}: StateContext<artistStateModel>, {payload}: RemoveTutorial ) {
-    //     patchState({
-    //         tutorials: getState().tutorials.filter(a=> a.name != payload)
-    //     })
-    // }
+    @Action(AddAlbumTracks)
+    AddTracks({getState, patchState}: StateContext<ArtistStateModel>, {payload}: AddAlbumTracks) {
+        const state = getState();
+        return this.api.getArtistTracks(payload.id).pipe(
+            tap(data => {
+                state.artists[state.active]
+                  .filter(e => e.id === payload.id)
+                  .map(a => a.tracks = data.items
+                    .map(d => new Tracks(d))
+                  );
+                
+                  state.activealbums.tracks = data.items;
+                  
+                const temp = state.artists;
+                patchState({
+                    active: state.active,
+                    activealbums: state.activealbums,
+                    artists: {
+                        ...temp,
+                    }
+                })
+            })
+        )
+    }
+
 }
