@@ -19,6 +19,11 @@ const routes: Routes = [
     path: 'artist/:id',
     component: ArtistComponent,
   },
+  {
+    path: '**',
+    pathMatch: 'full',
+    redirectTo: 'home'
+  }
 ];
 
 @NgModule({
