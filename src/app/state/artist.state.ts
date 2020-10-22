@@ -1,6 +1,6 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { ArtistStateModel, ArtistData } from './../models/artist.model'
-import { AddArtist, RemoveArtist } from './artist.actions'
+import { AddArtist } from './artist.actions'
 import { ApiService } from './../services/api.service';
 import { Injectable } from '@angular/core';
 import { tap, map } from 'rxjs/operators';

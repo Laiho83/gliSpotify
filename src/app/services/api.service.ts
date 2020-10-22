@@ -49,6 +49,18 @@ export class ApiService {
     );
   }
 
+  getArtist(id) {
+    return this.http.get(`${this.apiRoot}/v1/artists/${id}/albums`,  { headers: this.headers }).pipe(
+      map((e: any) => {
+        return e.artists.items;
+      }),
+      catchError(err => {
+        console.log('Error API getArtists ', err.message);
+        return of([]);
+      })
+    );
+  }
+
   checkToken() {
     let isToken$ = this.store.select(state => state.auth.token);
     isToken$.subscribe(e => {

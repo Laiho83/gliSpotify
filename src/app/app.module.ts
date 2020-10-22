@@ -16,6 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AccessTokenComponent } from './components/access-token/access-token.component';
 import { SearchComponent } from './components/search/search.component';
 import { HeaderComponent } from './components/header/header.component';
+import { ArtistComponent } from './components/artist/artist.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { HeaderComponent } from './components/header/header.component';
     HomeComponent,
     AccessTokenComponent,
     SearchComponent,
-    HeaderComponent
+    HeaderComponent,
+    ArtistComponent
   ],
   imports: [
     BrowserModule,
