@@ -1,0 +1,47 @@
+// -- VARIABLES -- //
+
+// ** COLORS
+$black-color: #000000;
+$white-color: #ffffff;
+
+// Main colors
+$primary-color: #121212;
+$secondary-color: #181818;
+
+// Text colors
+$text-color:$white-color;
+$heading-color: $white-color;
+$input-text: $secondary-color;
+$link-color: #0997fa;
+
+// Form colors
+$placeholder-color: #a2a2a2;
+$border-color: #eaeaea;
+
+// ** SPACING
+$grid-gutter: 25px;
+
+// ** HEADER HEIGHTS
+$nav-height: 85px;
+$nav-height-mobile: 50px;
+
+// ** TYPOGRAPHY
+// -- font family
+$font-family-base: 'Montserrat', sans-serif;
+$font-family-header: 'MontserratBold', sans-serif;
+
+// -- base font
+$em-base: 17px;
+$base-line-height: 1.4em;
+
+// -- headings
+$h1-size: 33px;
+$h1-line: 1.4em;
+$h2-size: 24px;
+$h2-line: 1.4em;
+
+// **BASIC WIDTHS
+$xl-width: 1200px;
+$lg-width: 940px;
+$md-width: 720px;
+$sm-width: 480px;

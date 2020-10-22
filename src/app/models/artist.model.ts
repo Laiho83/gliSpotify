@@ -16,8 +16,8 @@ export class ArtistData {
     };
     obj: any;
     constructor(obj: any) {
-        this.name = obj.name;
+        this.name = obj.name ? obj.name : '';
         this.genres = obj.genres;
-        this.image = obj.images[1];
+        this.image = obj.images[1] && obj.images[1].url ? obj.images[1].url : null;
       }
 }

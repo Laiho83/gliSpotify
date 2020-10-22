@@ -28,8 +28,18 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              {
+                "input": "src/styles.scss",
+                "lazy": true,
+                "bundleName": "main-style"
+              }
             ],
+            "extractCss": true,
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/_sass"
+              ]
+            },
             "scripts": []
           },
           "configurations": {

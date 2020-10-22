@@ -15,13 +15,15 @@ import { ApiService } from './services/api.service';
 import { HomeComponent } from './components/home/home.component';
 import { AccessTokenComponent } from './components/access-token/access-token.component';
 import { SearchComponent } from './components/search/search.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     AccessTokenComponent,
-    SearchComponent
+    SearchComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

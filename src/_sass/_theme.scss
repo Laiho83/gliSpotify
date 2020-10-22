@@ -1,0 +1,42 @@
+.app {
+  width: 100%;
+  min-height: 100vh;
+  background: $primary-color;
+}
+
+.card-wrapper {
+  justify-content: center;
+  align-items: stretch;
+  .card {
+    display: block;
+    width: 250px;
+    margin: 25px 10px;
+    
+    .card-inner {
+      display: block;
+      height: 100%;
+      width: 100%;
+      padding: 15px;
+      color: $white-color;
+      background: $secondary-color;
+      transition: background .3s ease-in-out;
+      .content {
+        padding: 10px;
+      }
+      &:hover {
+        background: lighten($secondary-color, 5);
+      }
+    }
+    &-title {
+      font-weight: bold;
+    }
+    &-genres {
+      li {
+        color: $placeholder-color;
+        padding: 2px 5px;
+        margin: 2px;
+        border: 1px solid $placeholder-color;
+      }
+    }
+  }
+}

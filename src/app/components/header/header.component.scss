@@ -1,0 +1,35 @@
+@import 'variables/_variables.scss';
+
+.header-spacer {
+  height: $nav-height;
+  margin-bottom: 50px;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: $nav-height;
+  background: $black-color;  
+  z-index: 99;
+  .row {
+    height: 100%;
+  }
+  .logo {
+    font-size: 24px;
+    display: flex;
+    align-items: center;
+    margin-right: 25px;
+    svg {
+      fill: $white-color;
+      margin-right: 5px;
+    }
+  }
+  nav {
+    li {
+      position: relative;
+      padding: 15px;
+    }
+  }
+}

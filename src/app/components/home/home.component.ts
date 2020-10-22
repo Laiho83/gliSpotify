@@ -11,15 +11,15 @@ import { SearchComponent } from './../search/search.component';
 })
 export class HomeComponent implements OnInit {
 
+  artists$;
+  artistList;
+
   constructor(private store: Store, private api: ApiService){}
 
   ngOnInit() {
-    this.store.select(state => state.artists).subscribe(i=>{
-      console.log(i);
+    this.artists$ =  this.store.select(state => state.artists);
+    this.artists$.subscribe(i => {
+      this.artistList = i.items;
     });
-    // let a = this.api.getService('Metallica');
-    // this.store.select(state => state.artists).subscribe(
-    //   a => console.log(a)
-    // );
   }
 }
