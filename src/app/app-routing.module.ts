@@ -17,9 +17,8 @@ const routes: Routes = [
     component: AccessTokenComponent,
   },
   {
-    path: 'artist/:id',
-    component: ArtistComponent,
-    resolve: { artist: ArtistResolver },
+    path: 'artist',
+    loadChildren: () => import('./modules/artist/artist.module').then(m => m.ArtistModule)
   },
   {
     path: '**',
