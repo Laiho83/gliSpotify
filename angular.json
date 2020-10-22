@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "gliSpotify"
+    }
+  },
+  "defaultProject": "gliSpotify",
+  "cli": {
+    "analytics": false
+  }
 }
