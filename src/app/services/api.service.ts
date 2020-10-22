@@ -63,7 +63,6 @@ export class ApiService {
   setToken() {
     this.store.select(state => state.auth.token).subscribe(e => {
       this.tokenBearer = e;
-      console.log('this.tokenBearer: ', this.tokenBearer);
       this.headers = new HttpHeaders({'Authorization': 'Bearer ' + this.tokenBearer})
     });
   }
