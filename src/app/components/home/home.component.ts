@@ -19,7 +19,8 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.artists$ =  this.store.select(state => state.artists);
     this.artists$.subscribe(i => {
-      this.artistList = i.items;
+      console.log(i);
+      // this.artistList = i.items;
     });
   }
 }

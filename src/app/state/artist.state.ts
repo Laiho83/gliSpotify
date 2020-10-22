@@ -7,7 +7,7 @@ import { tap, map } from 'rxjs/operators';
 
 
 @State<ArtistStateModel>({
-    name: 'artists',
+    name: 'spotify',
 
 })
 
@@ -15,7 +15,7 @@ import { tap, map } from 'rxjs/operators';
 export class ArtistState {
     @Selector()
     static getartists(state: ArtistStateModel) {
-        return state.items
+        return state.artists.name;
     }
 
     constructor(private api: ApiService){}
@@ -23,10 +23,13 @@ export class ArtistState {
     @Action(AddArtist)
     add({getState, patchState}: StateContext<ArtistStateModel>, {payload}: AddArtist) {
         const state = getState();
-        
+        let keyValue = payload.name.toString();
         return this.api.getService(payload.name).pipe(
             tap(data => patchState({
-                items: data.map(e => new ArtistData(e))
+                active: keyValue,
+                artists: {
+                    [keyValue]: data.map(e => new ArtistData(e))
+                }
             }))
         )
     }

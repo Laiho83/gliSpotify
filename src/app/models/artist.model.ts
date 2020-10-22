@@ -3,7 +3,10 @@ export interface ArtistName {
 }
 
 export class ArtistStateModel {
-    items: ArtistData[];
+    active: string;
+    artists: {
+        [name: string]: ArtistData[];
+    }
 }
 
 export class ArtistData {
