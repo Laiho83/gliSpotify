@@ -1,6 +1,6 @@
 import { State, Action, StateContext, Selector } from '@ngxs/store';
-import { ArtistStateModel, ArtistData } from './../models/artist.model'
-import { AddArtist } from './artist.actions'
+import { ArtistStateModel, ArtistData, Albums } from './../models/artist.model'
+import { AddArtist, AddAlbumList } from './artist.actions'
 import { ApiService } from './../services/api.service';
 import { Injectable } from '@angular/core';
 import { tap, map } from 'rxjs/operators';
@@ -33,6 +33,26 @@ export class ArtistState {
                     [keyValue]: data.map(e => new ArtistData(e))
                 }
             }))
+        )
+    }
+    
+    @Action(AddAlbumList)
+    AddAlbums({getState, patchState}: StateContext<ArtistStateModel>, {payload}: AddAlbumList) {
+        const state = getState();        
+        return this.api.getSingleArtist(payload.id).pipe(
+            tap(data => {
+                state.artists[state.active]
+                  .filter(e => e.id === payload.id)
+                  .map(a=>a.albums=data.items
+                  .map(d=>new Albums(d)));
+                const temp = state.artists;
+                patchState({
+                    active: state.active,
+                    artists: {
+                        ...temp,
+                    }
+                })
+            })
         )
     }
 

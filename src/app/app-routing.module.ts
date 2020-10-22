@@ -4,6 +4,7 @@ import { AccessTokenComponent } from './components/access-token/access-token.com
 import { ArtistComponent } from './components/artist/artist.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { ArtistResolver } from './components/artist/artist.resolver';
 
 const routes: Routes = [
   {
@@ -18,6 +19,7 @@ const routes: Routes = [
   {
     path: 'artist/:id',
     component: ArtistComponent,
+    resolve: { artist: ArtistResolver },
   },
   {
     path: '**',

@@ -17,6 +17,8 @@ import { AccessTokenComponent } from './components/access-token/access-token.com
 import { SearchComponent } from './components/search/search.component';
 import { HeaderComponent } from './components/header/header.component';
 import { ArtistComponent } from './components/artist/artist.component';
+import { ArtistResolver } from './components/artist/artist.resolver';
+
 
 @NgModule({
   declarations: [
@@ -38,7 +40,7 @@ import { ArtistComponent } from './components/artist/artist.component';
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot()
   ],
-  providers: [ApiService],
+  providers: [ApiService, ArtistResolver],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

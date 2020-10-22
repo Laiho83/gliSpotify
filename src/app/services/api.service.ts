@@ -49,13 +49,13 @@ export class ApiService {
     );
   }
 
-  getArtist(id) {
+  getSingleArtist(id) {
     return this.http.get(`${this.apiRoot}/v1/artists/${id}/albums`,  { headers: this.headers }).pipe(
       map((e: any) => {
-        return e.artists.items;
+        return e;
       }),
       catchError(err => {
-        console.log('Error API getArtists ', err.message);
+        console.log('Error API getArtist ', err.message);
         return of([]);
       })
     );
