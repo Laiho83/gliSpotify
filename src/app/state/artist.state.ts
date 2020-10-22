@@ -24,8 +24,8 @@ export class ArtistState {
     add({getState, patchState}: StateContext<ArtistStateModel>, {payload}: AddArtist) {
         const state = getState();
         const temp = state.artists;
-        let keyValue = payload.name.toString();
-        return this.api.getService(payload.name).pipe(
+        let keyValue = payload.name.toString().replace(/[^A-Z0-9]/ig, "").toLowerCase();
+        return this.api.getArtists(payload.name).pipe(
             tap(data => patchState({
                 active: keyValue,
                 artists: {

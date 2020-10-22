@@ -37,7 +37,7 @@ export class ApiService {
       this.setToken();
   }
 
-  getService(slug) {
+  getArtists(slug) {
     return this.http.get(`${this.apiRoot}/v1/search?q=${slug}&type=artist&limit=50&offset=0`,  { headers: this.headers }).pipe(
       map((e: any) => {
         return e.artists.items;
