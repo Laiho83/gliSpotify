@@ -29,7 +29,7 @@ export class ApiService {
     public router: Router
   ) { 
       this.authorizeUrl = 
-        `https://accounts.spotify.com/es-ES/authorize?client_id=${
+        `https://accounts.spotify.com/authorize?client_id=${
           this.clientId}&response_type=token&redirect_uri=${
             this.redirectUri}&expires_in=3600`
       this.setToken();

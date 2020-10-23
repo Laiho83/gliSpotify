@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
   apiurl: 'https://laiho83.github.io/gliSpotify/',
-  clientId: '03047c6f03f745b281bbdb44166f4ef7',
-  clientSecret: 'edc4a0cc5ca64468bc5fff7580d658a2',
+  clientId: 'b41992a9b45d4232aaa2ffbbbe230392',
+  clientSecret: '283c7cd49c69402cbc9132ded93f75cb',
 };
