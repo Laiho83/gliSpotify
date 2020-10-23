@@ -19,7 +19,7 @@ export class ApiService {
   private config = APP_CONFIG;
   private clientId = APP_CONFIG.spotify.clientId;
   private clientSecret = encodeURIComponent(APP_CONFIG.spotify.clientSecret);
-  private redirectUri = 'http://localhost:4200/access_token/';
+  private redirectUri = `${APP_CONFIG.apiurl}access_token/`;
   private authorizeUrl: string = '';
   private tokenBearer: string = '';
 
