@@ -16,7 +16,8 @@ const routes: Routes = [
   },
   {
     path: 'artist',
-    loadChildren: () => import('./modules/artist/artist.module').then(m => m.ArtistModule)
+    loadChildren: () => import('./modules/artist/artist.module').then(m => m.ArtistModule),
+    canActivate: [AuthGuardService]
   },
   {
     path: '**',

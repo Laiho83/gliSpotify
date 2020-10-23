@@ -25,41 +25,56 @@ export class ArtistState {
         const state = getState();
         const temp = state.artists;
         let keyValue = payload.name.toString().replace(/[^A-Z0-9]/ig, "").toLowerCase();
-        return this.api.getArtists(payload.name).pipe(
-            tap(data => patchState({
+        if(!(!!state.artists && !!state.artists[keyValue])) {
+            return this.api.getArtists(payload.name).pipe(
+                tap(data => patchState({
+                    active: keyValue,
+                    activeAlbumList: null,
+                    activeAlbum: null,
+                    artists: {
+                        ...temp,
+                        [keyValue]: data.map(e => new ArtistData(e))
+                    }
+                }))
+            )
+        } else {
+            patchState({
                 active: keyValue,
-                activeAlbumList: null,
-                activeAlbum: null,
-                artists: {
-                    ...temp,
-                    [keyValue]: data.map(e => new ArtistData(e))
-                }
-            }))
-        )
+            })
+        }
     }
     
     @Action(AddAlbumList)
     AddAlbums({getState, patchState}: StateContext<ArtistStateModel>, {payload}: AddAlbumList) {
-        const state = getState();        
-        return this.api.getSingleArtist(payload.id).pipe(
-            tap(data => {
-                const actAlbums = state.artists[state.active]
-                  .filter(e => e.id === payload.id)
-                  .map(a => a.albums = data.items
-                    .map(d => new Albums(d))
-                  );
-                const temp = state.artists;
-                patchState({
-                    active: state.active,
-                    activeAlbumList: actAlbums.map(a=>a)[0],
-                    activeArtist: payload.id,
-                    activeAlbum: null,
-                    artists: {
-                        ...temp,
-                    }
+        const state = getState();
+        let checkAlbums = state.artists[state.active].filter(e => e.id === payload.id).map(a=>a.albums ? a.albums : null)[0];
+      
+        if(!checkAlbums) {
+            return this.api.getSingleArtist(payload.id).pipe(
+                tap(data => {
+                    const actAlbums = state.artists[state.active]
+                      .filter(e => e.id === payload.id)
+                      .map(a => a.albums = data.items
+                        .map(d => new Albums(d))
+                      );
+                    const temp = state.artists;
+                    patchState({
+                        active: state.active,
+                        activeAlbumList: actAlbums.map(a=>a)[0],
+                        activeArtist: payload.id,
+                        activeAlbum: null,
+                        artists: {
+                            ...temp,
+                        }
+                    })
                 })
+            )
+        } else {
+            patchState({
+                activeArtist: payload.id,
+                activeAlbumList: checkAlbums
             })
-        )
+        }
     }
 
     @Action(AddAlbumTracks)
@@ -83,5 +98,4 @@ export class ArtistState {
             })
         )
     }
-
 }

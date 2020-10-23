@@ -3,13 +3,11 @@ import { Injectable } from '@angular/core';
 
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { Observable, of, EMPTY, forkJoin } from 'rxjs';
-import { map, catchError, take, mergeMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 import { Store } from'@ngxs/store';
-import { GetAuth } from './../state/auth.action';
 import { Router } from '@angular/router';
-import { AddArtist } from './../state/artist.actions';
 
 @Injectable({
   providedIn: 'root',
