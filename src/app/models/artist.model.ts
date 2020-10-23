@@ -13,8 +13,10 @@ export interface TrackId {
 
 export class ArtistStateModel {
     active: string;
-    activealbums: any;
+    activeAlbumList: any;
     activeArtist: string;
+    activeAlbum: string;
+    activeTracks: Tracks;
     artists: {
         [name: string]: ArtistData[];
     }
@@ -27,7 +29,6 @@ export class ArtistData {
     image: string;
     obj: any;
     albums: Albums;
-    tracks: Tracks;
     constructor(obj: any) {
         this.id = obj.id;
         this.name = obj.name ? obj.name : '';
@@ -42,11 +43,13 @@ export class Albums {
     title: string;
     name: string;
     release: string;
+    artist: string;
     constructor(obj: any) {
         this.id = obj.id;
         this.image = obj.images ? obj.images[1].url : '/assets/default.png';
         this.name = obj.name;
         this.release = obj.release_date;
+        this.artist = obj.artists && obj.artists[0] ? obj.artists[0].name : null;
     }
 }
 
@@ -54,7 +57,7 @@ export class Tracks {
     id: string;
     name: string;
     constructor(obj: any) {
-        this.id = obj.id ? obj.id : null;
+        this.id = obj.id ? 'https://open.spotify.com/embed/track/'+obj.id : null;
         this.name = obj.name ? obj.name : null;
     }
 }

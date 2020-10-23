@@ -28,7 +28,8 @@ export class ArtistState {
         return this.api.getArtists(payload.name).pipe(
             tap(data => patchState({
                 active: keyValue,
-                activealbums: null,
+                activeAlbumList: null,
+                activeAlbum: null,
                 artists: {
                     ...temp,
                     [keyValue]: data.map(e => new ArtistData(e))
@@ -50,8 +51,9 @@ export class ArtistState {
                 const temp = state.artists;
                 patchState({
                     active: state.active,
-                    activealbums: actAlbums.map(a=>a)[0],
+                    activeAlbumList: actAlbums.map(a=>a)[0],
                     activeArtist: payload.id,
+                    activeAlbum: null,
                     artists: {
                         ...temp,
                     }
@@ -65,18 +67,15 @@ export class ArtistState {
         const state = getState();
         return this.api.getArtistTracks(payload.id).pipe(
             tap(data => {
-                state.artists[state.active]
-                  .filter(e => e.id === payload.id)
-                  .map(a => a.tracks = data.items
-                    .map(d => new Tracks(d))
-                  );
-                
-                  state.activealbums.tracks = data.items;
-                  
+               
+                    
+                state.activeTracks = data.items.map(e => new Tracks(e));
+
                 const temp = state.artists;
                 patchState({
                     active: state.active,
-                    activealbums: state.activealbums,
+                    activeAlbumList: state.activeAlbumList,
+                    activeAlbum: payload.id,
                     artists: {
                         ...temp,
                     }

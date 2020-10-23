@@ -33,8 +33,8 @@ export class ArtistComponent implements OnInit {
     this.albums$ =  this.store.select(state => state.spotify);
     this.albums$.subscribe(i => {
       const temp = i.active || null;
-      if(i.activealbums) {
-        this.albumList = i.activealbums;
+      if(i.activeAlbumList) {
+        this.albumList = i.activeAlbumList;
         this.cd.markForCheck();
       }      
     });

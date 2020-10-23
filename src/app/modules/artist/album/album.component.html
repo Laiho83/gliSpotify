@@ -1,1 +1,16 @@
-<p>album works!</p>
+<div class="artist-stacks">
+  <div class="album-details row" *ngIf="activeAlbum">
+    <img class="album-image" [src]="activeAlbum.image" [alt]="activeAlbum.name">
+    <div class="album-content">
+      <h2 class="art-name">{{activeAlbum.artist}}</h2>
+      <p class="alb-name">{{activeAlbum.name}}</p>
+      <p class="date">{{ setDate(activeAlbum.release) | date: format }}</p>
+    </div>
+  </div>
+  <div class="track-list">
+    <div class="row" *ngFor="let list of songLists">
+      <p class="album-title">{{ list.name }}</p>
+      <iframe *ngIf="list.id" [src]="transform(list.id)" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>
+  </div>
+  </div>
+</div> 
