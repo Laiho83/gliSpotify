@@ -29,6 +29,20 @@ header {
     li {
       position: relative;
       padding: 15px;
+      a {
+        position: relative;
+        &.active {
+          &:after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 1px;
+            background: $link-color;
+            bottom: -4px;
+            left: 0;
+          }
+        }
+      }
     }
   }
 }
