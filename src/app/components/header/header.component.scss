@@ -96,7 +96,10 @@ header {
   &.modal-active {
     display: block;
     min-height: 90vh;
-    overflow: auto;
+  }
+  .modal-wrapper {
+    height: 85vh;
+    overflow-y: scroll;
   }
   .modal-inner {
     padding: 15px;

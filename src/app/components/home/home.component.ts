@@ -20,6 +20,8 @@ export class HomeComponent implements OnInit {
       const temp = i.active || null;
       if (temp){
         this.artistList = i.artists[temp];
+      } else {
+        this.artistList = [];
       }
     });
   }

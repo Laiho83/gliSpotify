@@ -27,15 +27,23 @@ export class ArtistState {
         let keyValue = payload.name.toString().replace(/[^A-Z0-9]/ig, "").toLowerCase();
         if(!(!!state.artists && !!state.artists[keyValue])) {
             return this.api.getArtists(payload.name).pipe(
-                tap(data => patchState({
-                    active: keyValue,
-                    activeAlbumList: null,
-                    activeAlbum: null,
-                    artists: {
-                        ...temp,
-                        [keyValue]: data.map(e => new ArtistData(e))
+                tap(data => {
+                    if(data.length > 0) {
+                        return patchState({
+                            active: keyValue,
+                            activeAlbumList: null,
+                            activeAlbum: null,
+                            artists: {
+                                ...temp,
+                                [keyValue]: data.map(e => new ArtistData(e))
+                            }
+                        })
+                    } else {
+                        return patchState({
+                            active: '',
+                        })
                     }
-                }))
+                })
             )
         } else {
             patchState({

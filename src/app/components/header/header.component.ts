@@ -44,7 +44,6 @@ export class HeaderComponent {
         });
       }
     });
-    console.log(this.historyList);
     this.historyActive = !this.historyActive;
   }
 

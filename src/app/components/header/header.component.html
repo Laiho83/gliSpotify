@@ -18,18 +18,20 @@
 </header>
 
 <div class="modal" [class.modal-active]="historyActive">
-  <ul class="modal-inner" *ngFor="let list of historyList">
-    <li class ="container-inner">
-      <div class="artist-title">
-        <p>{{list.name}}</p>
-      </div>
-      <ul class="modal-artists">
-        <li *ngFor="let item of list.artists">
-          <a [href]="'artist/'+item.id" [routerLink]="'artist/'+item.id">
-            {{ item.name }}
-          </a>
-        </li>
-      </ul>
-    </li>
-  </ul>
+  <div class="modal-wrapper">
+    <ul class="modal-inner" *ngFor="let list of historyList">
+      <li class ="container-inner">
+        <div class="artist-title">
+          <p>{{list.name}}</p>
+        </div>
+        <ul class="modal-artists">
+          <li *ngFor="let item of list.artists">
+            <a [href]="'artist/'+item.id" [routerLink]="'artist/'+item.id">
+              {{ item.name }}
+            </a>
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </div>
 </div>
