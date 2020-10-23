@@ -13,6 +13,5 @@ export class ArtistResolver implements Resolve<any> {
   resolve(route: ActivatedRouteSnapshot) {
     // console.log(route.paramMap.get('id'));
     // this.api.getSingleArtist(route.paramMap.get('id')).subscribe(e=>console.log(e))
-    console.log('lsjdfghlskjfdhg');
   }
 }

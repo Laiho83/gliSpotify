@@ -38,7 +38,6 @@ export class AlbumComponent implements OnInit {
       if(i.activeAlbumList && i.activeTracks) {
         this.songLists = i.activeTracks;
         this.activeAlbum = i.activeAlbumList.find(e => e.id === i.activeAlbum)
-        console.log(this.activeAlbum);
       }  
     })
   }
