@@ -2,6 +2,9 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.0.5.
 
+## Production
+This is the link to working version: [https://laiho83.github.io/gliSpotify/home](https://laiho83.github.io/gliSpotify/home)
+
 ## Steps to run the app
 
 1. Clone the repository: `git clone https://github.com/Laiho83/gliSpotify.git`
