@@ -20,6 +20,7 @@ export class HeaderComponent {
   ) { 
     router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
+        this.historyActive = false;
         if(this.router.url.includes('/artist/album/')) {
           const temp = this.router.url.substr(this.router.url.lastIndexOf('/')+1).split(':')[0];
           this.albumNavActive = this.router.url.split('album/')[0]+temp;

@@ -8,19 +8,21 @@
     <nav>
       <ul class="row">
         <li><a routerLinkActive="active" [href]="['home']" [routerLink]="['home']">Home</a></li>
-        <li *ngIf="albumNavActive.length > 0"><a class="active" [href]="albumNavActive" [routerLink]="albumNavActive">Artist</a></li>
+        <li *ngIf="albumNavActive.length > 0"><a class="active" [href]="albumNavActive" [routerLink]="albumNavActive">Back</a></li>
       </ul>
     </nav>
     <button class="history-link" (click)="showHistory()">
-      Hisory
+      History
     </button>
   </div>
 </header>
 
-<div class="modal container-inner" [class.modal-active]="historyActive">
-  <ul class="modal-inner">
-    <li *ngFor="let list of historyList">
-      <p>{{list.name}}</p>
+<div class="modal" [class.modal-active]="historyActive">
+  <ul class="modal-inner" *ngFor="let list of historyList">
+    <li class ="container-inner">
+      <div class="artist-title">
+        <p>{{list.name}}</p>
+      </div>
       <ul class="modal-artists">
         <li *ngFor="let item of list.artists">
           <a [href]="'artist/'+item.id" [routerLink]="'artist/'+item.id">

@@ -60,7 +60,9 @@ header {
 }
 
 .modal {
-  position: relative;
+  position: fixed;
+  top: 75px;
+  height: calc(100vh - 75px);
   width: 100vw;
   min-height: 0;
   overflow: hidden;
@@ -72,6 +74,17 @@ header {
     display: block;
     min-height: 90vh;
     overflow: auto;
+  }
+  .modal-inner {
+    padding: 15px;
+  }
+  .artist-title {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid $white-color;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 10px;
   }
 }
 
