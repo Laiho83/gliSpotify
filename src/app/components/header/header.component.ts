@@ -1,16 +1,23 @@
-import { Component, OnInit } from '@angular/core';
-import { Router, NavigationEnd, Event, NavigationStart } from '@angular/router';
+import { Component } from '@angular/core';
+import { Router, NavigationEnd, Event } from '@angular/router';
+import { Store } from'@ngxs/store';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss']
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent {
 
   albumNavActive: string = '';
+  history$;
+  historyList = [];
+  historyActive = false;
 
-  constructor(private router: Router) { 
+  constructor(
+    private router: Router,
+    private store: Store
+  ) { 
     router.events.subscribe((event: Event) => {
       if (event instanceof NavigationEnd) {
         if(this.router.url.includes('/artist/album/')) {
@@ -23,7 +30,21 @@ export class HeaderComponent implements OnInit {
     })
   }
 
-  ngOnInit() { 
+  showHistory() {
+    this.history$ = this.store.select(state => state.spotify);
+    this.history$.subscribe(i => {
+      this.historyList = [];
+      if(i.artists) {
+        Object.keys(i.artists).map(a => {
+          this.historyList.push({
+            name: a,
+            artists: i.artists[a]
+          })
+        });
+      }
+    });
+    console.log(this.historyList);
+    this.historyActive = !this.historyActive;
   }
 
 }

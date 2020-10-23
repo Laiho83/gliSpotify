@@ -1,7 +1,9 @@
 @import 'variables/_variables.scss';
+@import 'variables/_breakpoints.scss';
 
 .header-spacer {
   height: $nav-height;
+  margin-bottom: 50px;
 }
 
 header {
@@ -42,6 +44,80 @@ header {
             left: 0;
           }
         }
+      }
+    }
+  }
+  .history-link {
+    position: absolute;
+    top: $nav-height;
+    left: 0;
+    width: 100vw;
+    padding: 10px;
+    background: $link-color;
+    color: $white-color;
+  }
+}
+
+.modal {
+  position: relative;
+  width: 100vw;
+  min-height: 0;
+  overflow: hidden;
+  background: $secondary-color;
+  transition: all .3s ease-in-out;
+  z-index: 999;
+  display: none;
+  &.modal-active {
+    display: block;
+    min-height: 90vh;
+    overflow: auto;
+  }
+}
+
+// ----------------- //
+// -- BREAKPOINTS -- //
+// ----------------- //
+
+// 720PX
+@include breakpoint-md {
+  header {
+    margin-bottom: 0;
+    .history-link {
+      position: relative;
+      top: 0;
+      width: auto;
+      margin-left: auto;
+      margin-right: 20px;
+      padding: 10px 50px;
+      border: 2px solid $link-color;
+      background: transparent;
+    }
+  }
+
+  .modal {
+    .modal-inner {
+      padding: 15px;
+    }
+    .modal-artists {
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: space-between;
+      li {
+        width: 33%;
+        padding: 5px;
+        border: 1px solid $white-color;
+        margin-bottom: 2px;
+      }
+    }
+  }
+}
+
+// 960PX
+@include breakpoint-lg {
+  .modal {
+    .modal-artists {
+      li {
+        width: 24%;
       }
     }
   }

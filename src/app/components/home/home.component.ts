@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../services/api.service';
 import { Store } from'@ngxs/store';
-import { AddArtist } from './../../state/artist.actions';
-import { SearchComponent } from './../search/search.component';
 
 @Component({
   selector: 'app-home',

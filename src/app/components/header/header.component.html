@@ -11,5 +11,23 @@
         <li *ngIf="albumNavActive.length > 0"><a class="active" [href]="albumNavActive" [routerLink]="albumNavActive">Back Artists</a></li>
       </ul>
     </nav>
+    <button class="history-link" (click)="showHistory()">
+      Hisory
+    </button>
   </div>
 </header>
+
+<div class="modal container-inner" [class.modal-active]="historyActive">
+  <ul class="modal-inner">
+    <li *ngFor="let list of historyList">
+      <p>{{list.name}}</p>
+      <ul class="modal-artists">
+        <li *ngFor="let item of list.artists">
+          <a [href]="'artist/'+item.id" [routerLink]="'artist/'+item.id">
+            {{ item.name }}
+          </a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
