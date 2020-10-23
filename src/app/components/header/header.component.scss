@@ -56,19 +56,42 @@ header {
     padding: 10px;
     background: $link-color;
     color: $white-color;
+    transition: all .3s ease-in-out;
+    &:hover {
+      background: $link-color;
+      color: $white-color;
+    }
+    &.active {
+      background: $link-color;
+      color: $white-color; 
+      &:after {
+        content: '';
+        position: absolute;
+        bottom: -18px;
+        left: 50%;
+        width: 0; 
+        height: 0; 
+        border-left: 20px solid transparent;
+        border-right: 20px solid transparent;
+        
+        border-top: 20px solid $link-color;;
+      }
+    }
   }
 }
 
 .modal {
   position: fixed;
-  top: 75px;
-  height: calc(100vh - 75px);
+  top: $nav-height;
+  height: calc(100vh -  $nav-height);
   width: 100vw;
   min-height: 0;
+  padding-top: 60px;
   overflow: hidden;
-  background: $secondary-color;
+  background: $black-color;
+  border-top: 1px solid $link-color;
   transition: all .3s ease-in-out;
-  z-index: 999;
+  z-index: 88;
   display: none;
   &.modal-active {
     display: block;
@@ -119,10 +142,14 @@ header {
       padding: 10px 50px;
       border: 2px solid $link-color;
       background: transparent;
+      &.active {
+        transform: translate(-15px, 23px);
+      }
     }
   }
 
   .modal {
+    padding-top: 25px;
     .modal-inner {
       padding: 15px;
     }

@@ -11,7 +11,7 @@
         <li *ngIf="albumNavActive.length > 0"><a class="active" [href]="albumNavActive" [routerLink]="albumNavActive">Back</a></li>
       </ul>
     </nav>
-    <button class="history-link" (click)="showHistory()">
+    <button class="history-link" [class.active]="historyActive" (click)="showHistory()">
       History
     </button>
   </div>
