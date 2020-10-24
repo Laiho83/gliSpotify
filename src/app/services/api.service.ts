@@ -8,6 +8,8 @@ import { map, catchError } from 'rxjs/operators';
 
 import { Store } from'@ngxs/store';
 import { Router } from '@angular/router';
+import { GetAuth } from './../state/auth.action';
+
 
 @Injectable({
   providedIn: 'root',
@@ -16,9 +18,7 @@ export class ApiService {
 
   private headers;
   private apiRoot = 'https://api.spotify.com';
-  private config = APP_CONFIG;
   private clientId = APP_CONFIG.spotify.clientId;
-  private clientSecret = encodeURIComponent(APP_CONFIG.spotify.clientSecret);
   private redirectUri = `${APP_CONFIG.apiurl}access_token/`;
   private authorizeUrl: string = '';
   private tokenBearer: string = '';
@@ -27,12 +27,11 @@ export class ApiService {
     private http: HttpClient,
     private store: Store,
     public router: Router
-  ) { 
+  ) {
       this.authorizeUrl = 
         `https://accounts.spotify.com/authorize?client_id=${
           this.clientId}&response_type=token&redirect_uri=${
             this.redirectUri}&expires_in=3600`
-      this.setToken();
   }
 
   getArtists(slug) {
@@ -71,21 +70,31 @@ export class ApiService {
     );
   }
 
+  checkTokenLogin() {
+    this.store.dispatch(new GetAuth({accessToken: sessionStorage.getItem('token')}));
+    this.checkToken() ? this.setToken() : window.location.href = this.authorizeUrl;
+  }
+
   checkToken() {
+    let hasToken;
     let isToken$ = this.store.select(state => state.auth.token);
     isToken$.subscribe(e => {
-      if(!e) {
-        window.location.href = this.authorizeUrl;
-      } else {
-        this.checkToken();
-      }
+      hasToken = !!e;
     });
+    return hasToken;
+  }
+
+  storeToken() {
+    this.store.select(state => state.auth.token).subscribe(e => {
+      sessionStorage.setItem('token', e);
+      this.setToken();
+    });    
   }
 
   setToken() {
     this.store.select(state => state.auth.token).subscribe(e => {
       this.tokenBearer = e;
       this.headers = new HttpHeaders({'Authorization': 'Bearer ' + this.tokenBearer})
-    });
+    });        
   }
 }
