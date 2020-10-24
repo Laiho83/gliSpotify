@@ -1,15 +1,15 @@
 <app-search></app-search>
 <div class="artists card-wrapper row">
-  <ng-container *ngFor="let list of artistList">
-    <div class="card" *ngIf="list.image && list.name">
-      <a [href]="['/artist/'+list.id]" [routerLink]="['/artist/'+list.id]" class="card-inner">
+  <ng-container *ngFor="let list of artistList | keyvalue">
+    <div class="card" *ngIf="list.value.image && list.value.name">
+      <a [href]="['/artist/'+list.value.id]" [routerLink]="['/artist/'+list.value.id]" class="card-inner">
         <div class="media-wrapper">
-          <img [src]='list.image' [alt]="list.name">
+          <img [src]='list.value.image' [alt]="list.value.name">
         </div>
         <div class="content">
-          <p class="card-title">{{list.name}}</p>
+          <p class="card-title">{{list.value.name}}</p>
           <ul class="card-genres row">
-            <li *ngFor="let genre of list.genres">
+            <li *ngFor="let genre of list.value.genres">
               {{ genre }}
             </li>
           </ul>

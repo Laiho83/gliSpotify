@@ -31,12 +31,14 @@ export class ArtistComponent implements OnInit {
 
   ngOnInit() {
     this.albums$ =  this.store.select(state => state.spotify);
-    this.albums$.subscribe(i => {
-      const temp = i.active || null;
-      if(i.activeAlbumList) {
-        this.albumList = i.activeAlbumList;
+    this.albums$.subscribe(i => {      
+      const activeSearch = i.active || null;
+      const activeArtist = i.activeArtist || null;
+      if(activeSearch && activeArtist) {
+        this.albumList = i.artists[activeSearch].get(activeArtist).albums;
+        console.log(this.albumList);
         this.cd.markForCheck();
-      }      
+      }
     });
   }
 }

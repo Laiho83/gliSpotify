@@ -18,7 +18,7 @@ export class ArtistStateModel {
     activeAlbum: string;
     activeTracks: Tracks;
     artists: {
-        [name: string]: ArtistData[];
+        [name: string]: Map<string, ArtistData>
     }
 }
 
@@ -34,6 +34,7 @@ export class ArtistData {
         this.name = obj.name ? obj.name : '';
         this.genres = obj.genres;
         this.image = obj.images[1] && obj.images[1].url ? obj.images[1].url : '/assets/default.png';
+        this.albums = null;
       }
 }
 
