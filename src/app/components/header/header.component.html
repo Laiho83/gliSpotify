@@ -22,12 +22,12 @@
     <ul class="modal-inner" *ngFor="let list of historyList">
       <li class ="container-inner">
         <div class="artist-title">
-          <p>{{list.name}}</p>
+          <span>{{list.name}}</span>
         </div>
         <ul class="modal-artists">
-          <li *ngFor="let item of list.artists">
-            <a [href]="'artist/'+item.id" [routerLink]="'artist/'+item.id">
-              {{ item.name }}
+          <li *ngFor="let item of list.artists | keyvalue">
+            <a [href]="'artist/'+item.value.id" [routerLink]="'artist/'+item.value.id">
+              {{ item.value.name }}
             </a>
           </li>
         </ul>

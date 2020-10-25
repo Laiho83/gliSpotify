@@ -32,15 +32,23 @@ export class ArtistState {
                     data.map(e => {
                         artistData.set(e.id, new ArtistData(e))
                     })
-                    return patchState({
-                        active: data.length > 0 ? keyValue : '',
-                        searchValue: keyValue,
-                        activeAlbum: null,
-                        artists: {
-                            ...state.artists,
-                            [keyValue]: artistData
-                        }
-                    })
+                    if (data.length > 0) {
+                        return patchState({
+                            active: data.length > 0 ? keyValue : '',
+                            searchValue: keyValue,
+                            activeAlbum: null,
+                            artists: {
+                                ...state.artists,
+                                [keyValue]: artistData
+                            }
+                        })
+                    } else {
+                        return patchState({
+                            active: data.length > 0 ? keyValue : '',
+                            searchValue: keyValue,
+                        })
+                    }
+
                 })
             )
         } else {

@@ -73,8 +73,7 @@ header {
         height: 0; 
         border-left: 20px solid transparent;
         border-right: 20px solid transparent;
-        
-        border-top: 20px solid $link-color;;
+        border-top: 20px solid $link-color;
       }
     }
   }
@@ -95,7 +94,7 @@ header {
   display: none;
   &.modal-active {
     display: block;
-    min-height: 90vh;
+    min-height: 92vh;
   }
   .modal-wrapper {
     height: 85vh;
@@ -120,11 +119,26 @@ header {
   }
   .artist-title {
     width: 100%;
-    padding: 5px;
+    margin-bottom: 10px;
+    padding: 10px;
     border: 1px solid $white-color;
     font-weight: bold;
     text-transform: uppercase;
-    margin-bottom: 10px;
+    cursor: pointer;
+    &:after {
+      content: '';
+      position: absolute;
+      top: 15px;
+      right: 50px;
+      width: 0; 
+      height: 0; 
+      border-left: 10px solid transparent;
+      border-right: 10px solid transparent;    
+      border-top: 10px solid $link-color;
+    }
+    &:hover {
+
+    }
   }
 }
 

@@ -13,6 +13,7 @@ export class HeaderComponent {
   history$;
   historyList = [];
   historyActive = false;
+  subActive = false;
 
   constructor(
     private router: Router,
@@ -46,5 +47,7 @@ export class HeaderComponent {
     });
     this.historyActive = !this.historyActive;
   }
-
+  setSubActive() {
+    this.subActive = !this.subActive;
+  }
 }
