@@ -1,5 +1,3 @@
-import { map, switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from'@ngxs/store';
