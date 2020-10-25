@@ -13,6 +13,7 @@ export interface TrackId {
 
 export class ArtistStateModel {
     active: string;
+    searchValue: string;
     activeArtist: string;
     activeAlbum: string;
     activeTracks: Tracks;

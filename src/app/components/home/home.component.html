@@ -1,5 +1,5 @@
 <app-search></app-search>
-<div class="artists card-wrapper row">
+<div class="artists card-wrapper row" *ngIf="searchValue; else emptyTemplate">
   <ng-container *ngFor="let list of artistList | keyvalue: originalOrder">
     <div class="card" *ngIf="list.value.image && list.value.name">
       <a [href]="['/artist/'+list.value.id]" [routerLink]="['/artist/'+list.value.id]" class="card-inner">
@@ -18,3 +18,8 @@
     </div>
   </ng-container>
 </div>
+<ng-template #emptyTemplate>
+  <div class="artists row">
+    <h2>No resualts for .... {{ searchOriginalValue }}</h2>
+  </div>
+</ng-template>

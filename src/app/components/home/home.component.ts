@@ -12,15 +12,18 @@ export class HomeComponent implements OnInit {
 
   artists$;
   artistList;
+  searchValue;
+  searchOriginalValue;
 
   constructor(private store: Store, private api: ApiService){}
 
   ngOnInit() {
     this.artists$ =  this.store.select(state => state.spotify);
     this.artists$.subscribe(i => {
-      const temp = i.active || null;      
-      if (temp){
-        this.artistList = i.artists[temp];
+      this.searchValue = i.active || null;
+      this.searchOriginalValue = i.searchValue;
+      if (this.searchValue){
+        this.artistList = i.artists[this.searchValue];
       } else {
         this.artistList = [];
       }

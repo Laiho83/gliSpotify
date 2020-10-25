@@ -34,6 +34,7 @@ export class ArtistState {
                     })
                     return patchState({
                         active: data.length > 0 ? keyValue : '',
+                        searchValue: keyValue,
                         activeAlbum: null,
                         artists: {
                             ...state.artists,
