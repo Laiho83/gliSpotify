@@ -4,6 +4,7 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from'@ngxs/store';
 import { AddAlbumList } from './../../state/artist.actions';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-artist',
@@ -31,12 +32,15 @@ export class ArtistComponent implements OnInit {
 
   ngOnInit() {
     this.albums$ =  this.store.select(state => state.spotify);
-    this.albums$.subscribe(i => {
-      const temp = i.active || null;
-      if(i.activeAlbumList) {
-        this.albumList = i.activeAlbumList;
+    this.albums$.subscribe(i =>   {      
+      if(i.activeArtist) {
+        this.albumList = i.albums[i.activeArtist];
         this.cd.markForCheck();
       }      
     });
+  }
+
+  originalOrder = (a: KeyValue<number,string>, b: KeyValue<number,string>): number => {
+    return 0;
   }
 }

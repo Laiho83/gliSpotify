@@ -7,7 +7,7 @@
       <p class="date">{{ setDate(activeAlbum.release) | date: format }}</p>
     </div>
   </div>
-  <div class="track-list">
+  <div class="track-list" *ngIf="songLists">
     <div class="row" *ngFor="let list of songLists">
       <p class="album-title">{{ list.name }}</p>
       <iframe *ngIf="list.id" [src]="transform(list.id)" width="300" height="80" frameborder="0" allowtransparency="true" allow="encrypted-media"></iframe>

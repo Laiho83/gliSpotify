@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../services/api.service';
 import { Store } from'@ngxs/store';
+import { KeyValue } from '@angular/common';
 
 @Component({
   selector: 'app-home',
@@ -17,12 +18,16 @@ export class HomeComponent implements OnInit {
   ngOnInit() {
     this.artists$ =  this.store.select(state => state.spotify);
     this.artists$.subscribe(i => {
-      const temp = i.active || null;
+      const temp = i.active || null;      
       if (temp){
         this.artistList = i.artists[temp];
       } else {
         this.artistList = [];
       }
     });
+  }
+
+  originalOrder = (a: KeyValue<number,string>, b: KeyValue<number,string>): number => {
+    return 0;
   }
 }

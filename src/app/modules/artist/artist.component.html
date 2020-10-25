@@ -1,13 +1,13 @@
 <div class="artists card-wrapper row">
-  <ng-container *ngFor="let list of albumList">
+  <ng-container *ngFor="let list of albumList | keyvalue: originalOrder">
     <div class="card">
       <div class="card-inner">
         <div class="media-wrapper">
-          <img [src]='list.image' [alt]="list.name">
+          <img [src]='list.value.image' [alt]="list.value.name">
         </div>
         <div class="content">
-          <p class="card-title">{{list.name}}</p>
-          <a [href]="['/artist/album/'+artistId+':'+list.id]" [routerLink]="['/artist/album/'+artistId+':'+list.id]" class="btn">
+          <p class="card-title">{{list.value.name}}</p>
+          <a [href]="['/artist/album/'+artistId+':'+list.value.id]" [routerLink]="['/artist/album/'+artistId+':'+list.value.id]" class="btn">
             Check it out
           </a>
         </div>

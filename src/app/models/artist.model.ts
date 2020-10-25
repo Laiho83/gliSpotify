@@ -13,13 +13,23 @@ export interface TrackId {
 
 export class ArtistStateModel {
     active: string;
-    activeAlbumList: any;
     activeArtist: string;
     activeAlbum: string;
     activeTracks: Tracks;
     artists: {
-        [name: string]: ArtistData[];
+        [name: string]: Map<string, ArtistData>;
     }
+    albums: {
+        [name: string] : Map<string, Albums>;
+    }
+    tracks: {
+        [name: string] : Map<string, AllTracks>
+    }
+}
+
+export class AllTracks {
+    data: Tracks[];
+    info: Albums;
 }
 
 export class ArtistData {
@@ -27,8 +37,7 @@ export class ArtistData {
     name: string;
     genres: string[];
     image: string;
-    obj: any;
-    albums: Albums;
+    obj: any;    
     constructor(obj: any) {
         this.id = obj.id;
         this.name = obj.name ? obj.name : '';
