@@ -20,13 +20,12 @@
 <div class="modal" [class.modal-active]="historyActive">
   <div class="modal-wrapper">
     <ul class="modal-inner" *ngFor="let list of historyList; let i = index">
-      <li class ="container-inner">
+      <li class ="container-inner" [class.sub-active]="i === subActive">
         <div class="artist-title" (click)="setSubActive(i)">
           <span>{{list.name}}</span>
         </div>
         <ul 
-          class="modal-artists item-{{i}}"
-          [class.sub-active]="i === subActive"
+          class="modal-artists item-{{i}}"          
           [ngStyle]="{ 'max-height': i === subActive ? itemHeight : 0 }"
         >
           <li *ngFor="let item of list.artists | keyvalue">

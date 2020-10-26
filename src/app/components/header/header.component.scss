@@ -100,13 +100,20 @@ header {
     height: 85vh;
     overflow-y: scroll;
   }
+  .modal-inner {
+    .sub-active {
+      margin-bottom: 20px;
+      .artist-title {
+        &:after {
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
   .modal-artists {
     max-height: 0;
     overflow: hidden;
     transition: all .3s ease-in-out;
-    &.sub-active {
-      margin-bottom: 20px;
-    }
     li {
       a {
         display: block;
@@ -138,9 +145,7 @@ header {
       border-left: 10px solid transparent;
       border-right: 10px solid transparent;    
       border-top: 10px solid $link-color;
-    }
-    &:hover {
-
+      transition: all .3s ease-in-out;
     }
   }
 }
