@@ -13,7 +13,8 @@ export class HeaderComponent {
   history$;
   historyList = [];
   historyActive = false;
-  subActive = false;
+  subActive: number = -1;
+  itemHeight: string;
 
   constructor(
     private router: Router,
@@ -47,7 +48,9 @@ export class HeaderComponent {
     });
     this.historyActive = !this.historyActive;
   }
-  setSubActive() {
-    this.subActive = !this.subActive;
+  setSubActive(index: number) {
+    this.subActive = this.subActive === index ? -1 : index;
+    const el = document.getElementsByClassName(`item-${index}`)[0];
+    this.itemHeight = el.scrollHeight + 30 + 'px';
   }
 }

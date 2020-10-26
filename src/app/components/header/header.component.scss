@@ -100,10 +100,13 @@ header {
     height: 85vh;
     overflow-y: scroll;
   }
-  .modal-inner {
-    padding: 15px;
-  }
   .modal-artists {
+    max-height: 0;
+    overflow: hidden;
+    transition: all .3s ease-in-out;
+    &.sub-active {
+      margin-bottom: 20px;
+    }
     li {
       a {
         display: block;
@@ -182,7 +185,7 @@ header {
   .modal {
     padding-top: 25px;
     .modal-inner {
-      padding: 15px;
+      padding: 0 15px;
     }
     .modal-artists {
       display: flex;
