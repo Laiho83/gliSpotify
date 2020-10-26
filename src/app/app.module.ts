@@ -16,7 +16,7 @@ import { HomeComponent } from './components/home/home.component';
 import { AccessTokenComponent } from './components/access-token/access-token.component';
 import { SearchComponent } from './components/search/search.component';
 import { HeaderComponent } from './components/header/header.component';
-
+import { AuthInterceptor } from './services/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,10 @@ import { HeaderComponent } from './components/header/header.component';
     NgxsReduxDevtoolsPluginModule.forRoot(),
     NgxsLoggerPluginModule.forRoot()
   ],
-  providers: [ApiService],
+  providers: [
+    ApiService,
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

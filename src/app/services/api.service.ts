@@ -1,7 +1,7 @@
 import { APP_CONFIG } from './../config/app.config';
 import { Injectable } from '@angular/core';
 
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
@@ -16,12 +16,10 @@ import { GetAuth } from './../state/auth.action';
 })
 export class ApiService {
 
-  private headers;
   private apiRoot = 'https://api.spotify.com';
   private clientId = APP_CONFIG.spotify.clientId;
   private redirectUri = `${APP_CONFIG.apiurl}access_token/`;
   private authorizeUrl: string = '';
-  private tokenBearer: string = '';
 
   constructor(
     private http: HttpClient,
@@ -35,7 +33,7 @@ export class ApiService {
   }
 
   getArtists(slug) {
-    return this.http.get(`${this.apiRoot}/v1/search?q=${slug}&type=artist&limit=50&offset=0`,  { headers: this.headers }).pipe(
+    return this.http.get(`${this.apiRoot}/v1/search?q=${slug}&type=artist&limit=50&offset=0`).pipe(
       map((e: any) => {
         return e.artists.items;
       }),
@@ -47,7 +45,7 @@ export class ApiService {
   }
 
   getSingleArtist(id) {
-    return this.http.get(`${this.apiRoot}/v1/artists/${id}/albums`,  { headers: this.headers }).pipe(
+    return this.http.get(`${this.apiRoot}/v1/artists/${id}/albums`).pipe(
       map((e: any) => {
         return e;
       }),
@@ -59,7 +57,7 @@ export class ApiService {
   }
 
   getArtistTracks(id) {
-    return this.http.get(`${this.apiRoot}/v1/albums/${id}/tracks`,  { headers: this.headers }).pipe(
+    return this.http.get(`${this.apiRoot}/v1/albums/${id}/tracks`).pipe(
       map((e: any) => {
         return e;
       }),
@@ -72,7 +70,9 @@ export class ApiService {
 
   checkTokenLogin() {
     this.store.dispatch(new GetAuth({accessToken: sessionStorage.getItem('token')}));
-    this.checkToken() ? this.setToken() : window.location.href = this.authorizeUrl;
+    if(!this.checkToken()) {
+      window.location.href = this.authorizeUrl;
+    }
   }
 
   checkToken() {
@@ -87,14 +87,6 @@ export class ApiService {
   storeToken() {
     this.store.select(state => state.auth.token).subscribe(e => {
       sessionStorage.setItem('token', e);
-      this.setToken();
     });    
-  }
-
-  setToken() {
-    this.store.select(state => state.auth.token).subscribe(e => {
-      this.tokenBearer = e;
-      this.headers = new HttpHeaders({'Authorization': 'Bearer ' + this.tokenBearer})
-    });        
   }
 }
