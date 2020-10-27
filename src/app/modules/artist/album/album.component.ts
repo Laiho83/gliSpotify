@@ -53,6 +53,7 @@ export class AlbumComponent implements OnInit, OnDestroy {
     const formatedDate: Date = new Date(date.replace(/-/g, '/'));
     return formatedDate;
   }
+  
   ngOnDestroy() {
     this.subscription.unsubscribe();
   }

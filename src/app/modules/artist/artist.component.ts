@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Store } from'@ngxs/store';
 import { AddAlbumList } from './../../state/artist.actions';
@@ -10,11 +11,12 @@ import { KeyValue } from '@angular/common';
   styleUrls: ['./artist.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ArtistComponent implements OnInit {
+export class ArtistComponent implements OnInit, OnDestroy {
 
   albums$;
   albumList;
   artistId;
+  private subscribe: Subscription;
 
   constructor(
     private router: Router,
@@ -30,12 +32,16 @@ export class ArtistComponent implements OnInit {
 
   ngOnInit() {
     this.albums$ =  this.store.select(state => state.spotify);
-    this.albums$.subscribe(i =>   {      
+    this.subscribe = this.albums$.subscribe(i =>   {      
       if(i.activeArtist) {
         this.albumList = i.albums[i.activeArtist];
         this.cd.markForCheck();
       }      
     });
+  }
+
+  ngOnDestroy() {
+    this.subscribe.unsubscribe();
   }
 
   originalOrder = (a: KeyValue<number,string>, b: KeyValue<number,string>): number => {
